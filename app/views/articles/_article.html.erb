@@ -1,0 +1,19 @@
+<% if user_signed_in? %>
+      <%if article.user_id == current_user.id%>
+        <div class="your-article">
+          <%= simple_format(article.text) %>
+          <div class="grid-6">
+            <%= link_to "編集", edit_article_path(article.id), method: :get, class: 'post' %>
+            <%= link_to "削除", article_path(article.id), method: :delete, class: 'post' %>
+         </div>
+        </div>
+     <%else%>
+        <div class="other-article">
+          <%= simple_format(article.text) %>
+        </div>
+      <% end %>
+    <%else%>
+      <div class="other-article">
+      <%= simple_format(article.text) %>
+      </div>
+    <% end %>

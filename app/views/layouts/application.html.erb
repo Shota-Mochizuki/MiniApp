@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="header__bar row">
+        <h1 class="grid-6"><a href="/">ぶろぐ</a></h1>
+          <div class="grid-6">
+            <% if user_signed_in? %>
+              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'post' %>
+              <%= link_to "投稿", "/articles/new", method: :get, class: 'post' %>
+            <% else %>
+              <%= link_to "Log in", new_user_session_path, class: 'post' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </header>
+    <%= yield %>
+  </body>
+</html>
